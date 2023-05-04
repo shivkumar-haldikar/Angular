@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Observable, Subscription } from "rxjs";
 import { Product } from "./product";
 import { ProductService } from "./product.service";
 
 @Component({
-    selector: "pm-products",
     templateUrl: "./product-list.component.html",
     styleUrls:["./product-list.component.css"],
     providers: [ProductService]
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
     private _listFilter: string = "";
 
     pageTitle = "Product List";
@@ -17,16 +17,26 @@ export class ProductListComponent implements OnInit {
     showImage: boolean = false;
     filteredProducts: Product[] = [];
     products: Product[] = [];
-
+    errorMessage: string = "";
+    sub!: Subscription;
     constructor(private productService: ProductService){
     }
     
     //#region Interface Methods
     ngOnInit(): void {
-        this.products = this.productService.getProducts(); 
-        this.filteredProducts = this.products;
+       this.sub = this.productService.getProducts().subscribe({
+            next: products => {
+                this.products = products;
+                this.filteredProducts = products;
+            },
+            error: err => this.errorMessage = err
+        }); 
     }
     //#endregion
+
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
+    }
 
     get listFilter() : string {
         return this._listFilter;

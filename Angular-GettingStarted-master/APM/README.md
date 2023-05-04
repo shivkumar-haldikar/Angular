@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Notes
+`ng g c products/product-detail --flat`
+```url re-writing -- web server -- html 5 style urls  e.g. something.com/products 
+'#' style routing e.g. something.com/#/products -- # represents local routing
+```
+
+ng g g products/product-detail -- create gard
+
+ng g m products/product --flat -m app -- create module and import it to app module
