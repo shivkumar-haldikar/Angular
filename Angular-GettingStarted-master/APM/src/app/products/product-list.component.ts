@@ -19,6 +19,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     products: Product[] = [];
     errorMessage: string = "";
     sub!: Subscription;
+  
     constructor(private productService: ProductService){
     }
     
@@ -32,11 +33,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
             error: err => this.errorMessage = err
         }); 
     }
-    //#endregion
 
     ngOnDestroy(): void {
         this.sub.unsubscribe();
     }
+    //#endregion
+
+
+  
 
     get listFilter() : string {
         return this._listFilter;

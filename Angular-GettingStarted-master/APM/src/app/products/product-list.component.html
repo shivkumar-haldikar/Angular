@@ -45,6 +45,7 @@
                         <td>{{product.releaseDate}}</td>
                         <td>{{product.price | currency }}</td>
                         <td><pm-star [rating]="product.starRating" (notify)="onRatingClicked($event)"></pm-star></td>
+                        <td><input type="number" [(ngModel)]="product.starRating" /></td>
                     </tr>
                 </tbody>
             </table>

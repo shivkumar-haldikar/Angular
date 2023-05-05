@@ -11,8 +11,8 @@ import { ProductService } from './product.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  pageTitle:string = "Product Details";
   product: Product | undefined;
+  pageTitle:string = "Product Details";
   errorMessage: string = "";
   sub!: Subscription;
   
